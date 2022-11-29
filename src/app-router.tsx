@@ -9,6 +9,7 @@ import { ReactHookFormDemo } from './pages/forms/react-hook-form-demo';
 import { SetDynamicRouteDemo } from './pages/routing/set-dynamic-route-demo';
 import { GetDynamicRouteParamDemo } from './pages/routing/get-dynamic-route-param-demo';
 import { MantineDemo } from './pages/styling/mantine-demo';
+import { RouteMatchesDemo } from './pages/routing/route-matches-demo';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       <DemoPageLayout
         title="Routing"
         className="bg-indigo-400"
-        links={['dynamic-route', 'index-route']}
+        links={['dynamic-route', 'route-matches']}
       />
     ),
     children: [
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             element: <GetDynamicRouteParamDemo />,
           },
         ],
+      },
+      {
+        path: 'route-matches',
+        element: <RouteMatchesDemo />,
       },
     ],
   },
