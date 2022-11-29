@@ -9,8 +9,9 @@ export const SetDynamicRouteDemo = () => {
   return (
     <div>
       <div className="flex gap-2 text-lg">
-        <span>{location.pathname}/</span>
+        <span className="font-mono">{location.pathname}/</span>
         <input
+          className="pl-2"
           value={slugValue}
           onChange={(event) => setSlugValue(event.target.value)}
         />

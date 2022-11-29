@@ -18,7 +18,7 @@ export const DemoPageLayout = ({
         </Link>
         <div className="flex items-center gap-5 ">
           <div className="mr-5">
-            <div className="font-bold text-lg">{title}</div>
+            <div className="font-bold text-2xl">{title}</div>
           </div>
           {links.map((link) => (
             <NavLink

@@ -54,7 +54,7 @@ const router = createBrowserRouter([
     element: (
       <DemoPageLayout
         title="Data Fetching"
-        className="bg-amber-400"
+        className="bg-amber-500"
         links={['use-effect', 'react-query']}
       />
     ),
