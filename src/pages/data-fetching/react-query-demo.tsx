@@ -4,7 +4,7 @@ import { fetchPlanets } from './fetch-planets';
 
 export const ReactQueryDemo = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['demo', page],
     staleTime: 6000,
     queryFn: () => fetchPlanets(page),
@@ -23,17 +23,19 @@ export const ReactQueryDemo = () => {
           className="px-2 py-1 "
         />
       </div>
+
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <ul>
           {data?.map((planet) => (
-            <li>
+            <li key={planet.name}>
               {planet.name} ({planet.climate})
             </li>
           ))}
         </ul>
       )}
+      {isError ? 'Error' : null}
     </div>
   );
 };

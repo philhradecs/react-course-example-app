@@ -17,5 +17,8 @@ type PlanetsResponse = {
 export const fetchPlanets = async (page = 1) => {
   const response = await fetch(`https://swapi.dev/api/planets/?page=${page}`);
   const data = (await response.json()) as PlanetsResponse;
+  if (!data.results) {
+    throw new Error('Fetch Error');
+  }
   return data.results;
 };

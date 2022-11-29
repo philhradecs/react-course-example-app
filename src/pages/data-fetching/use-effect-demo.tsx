@@ -32,7 +32,7 @@ export const UseEffectDemo = () => {
       ) : (
         <ul>
           {data?.map((planet) => (
-            <li>
+            <li key={planet.name}>
               {planet.name} ({planet.climate})
             </li>
           ))}
