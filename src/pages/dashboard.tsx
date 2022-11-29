@@ -18,11 +18,10 @@ type DashboardLinkProps = {
 };
 const DashboardLink = ({ to, children }: DashboardLinkProps) => {
   return (
-    <Link
-      className="text-2xl p-4 tracking-wider hover:underline hover:-translate-y-1 transition-all underline-offset-4"
-      to={to}
-    >
-      {children}
+    <Link className="group" to={to}>
+      <div className="group-hover:-translate-y-1 transition-all text-2xl p-4 tracking-wider hover:underline underline-offset-4 ">
+        {children}
+      </div>
     </Link>
   );
 };
