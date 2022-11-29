@@ -25,7 +25,9 @@ export const DemoPageLayout = ({
               key={link}
               to={link}
               className={({ isActive }) =>
-                `px-2 py-1 rounded tracking-wider ${isActive ? className : ''}`
+                `px-2 py-1 rounded tracking-wider ${
+                  isActive ? `text-white ${className}` : ''
+                }`
               }
             >
               {link}

@@ -2,8 +2,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DashboardLayout } from './common/components/dashboard-layout';
 import { DemoPageLayout } from './common/components/demo-page-layout';
 import { Dashboard } from './pages/dashboard';
-import { ReactQueryDemo } from './pages/data-fetching/use-effect/react-query-demo';
-import { UseEffectDemo } from './pages/data-fetching/use-effect/use-effect-demo';
+import { ReactQueryDemo } from './pages/data-fetching/react-query-demo';
+import { UseEffectDemo } from './pages/data-fetching/use-effect-demo';
+import { BasicFormDemo } from './pages/forms/basic-form-demo';
+import { ReactHookFormDemo } from './pages/forms/react-hook-form-demo';
+import { SetDynamicRouteDemo } from './pages/routing/set-dynamic-route-demo';
+import { GetDynamicRouteParamDemo } from './pages/routing/get-dynamic-route-param-demo';
+import { MantineDemo } from './pages/styling/mantine-demo';
 
 const router = createBrowserRouter([
   {
@@ -15,11 +20,36 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/routing',
+    element: (
+      <DemoPageLayout
+        title="Routing"
+        className="bg-indigo-400"
+        links={['dynamic-route', 'index-route']}
+      />
+    ),
+    children: [
+      {
+        path: 'dynamic-route',
+        children: [
+          {
+            index: true,
+            element: <SetDynamicRouteDemo />,
+          },
+          {
+            path: ':slug',
+            element: <GetDynamicRouteParamDemo />,
+          },
+        ],
+      },
+    ],
+  },
+  {
     path: '/data-fetching',
     element: (
       <DemoPageLayout
         title="Data Fetching"
-        className="bg-amber-300"
+        className="bg-amber-400"
         links={['use-effect', 'react-query']}
       />
     ),
@@ -47,11 +77,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'basic',
-        element: <h1>BasicFormDemo</h1>,
+        element: <BasicFormDemo />,
       },
       {
         path: 'react-hook-form',
-        element: <h1>ReactHookFormDemo</h1>,
+        element: <ReactHookFormDemo />,
       },
     ],
   },
@@ -71,7 +101,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'mantine',
-        element: <h1>MantineDemo</h1>,
+        element: <MantineDemo />,
       },
     ],
   },
