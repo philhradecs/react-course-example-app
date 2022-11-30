@@ -1,19 +1,26 @@
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import { DemoForm, TestForm } from './test-form';
+import z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-type DemoForm = {
-  firstName: string;
-  lastName: string;
-  email: string;
-};
+const TestFormSchema = z.object({
+  firstName: z.string().min(1, 'Bitte Vorname angeben'),
+  lastName: z.string().min(1, 'Bitte Vorname angeben'),
+  email: z.string().email(),
+  color: z.string().min(1),
+  checkbox: z.boolean(),
+});
 
 export const ReactHookFormDemo = () => {
-  const {
-    handleSubmit,
-    register,
-    watch,
-    formState: { touchedFields, dirtyFields, isSubmitted },
-  } = useForm<DemoForm>({
-    defaultValues: { firstName: '', lastName: '', email: '' },
+  const formMethods = useForm<DemoForm>({
+    resolver: zodResolver(TestFormSchema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      checkbox: false,
+      color: '#fff',
+    },
   });
 
   const onSubmit = (values: DemoForm) => {
@@ -22,37 +29,9 @@ export const ReactHookFormDemo = () => {
 
   return (
     <div className="grid grid-cols-4">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-3 w-52">
-          <input {...register('firstName')} placeholder="First Name" />
-          <input {...register('lastName')} placeholder="Last Name" />
-          <input {...register('email')} placeholder="Email" />
-        </div>
-        <div className="flex gap-4">
-          <button className="mt-4 border py-1 px-2 bg-slate-100" type="submit">
-            Submit
-          </button>
-          <button className="mt-4 border py-1 px-2 bg-slate-100" type="reset">
-            Reset
-          </button>
-        </div>
-      </form>
-      <div>
-        <div className="font-bold">
-          Values (submitted: {String(isSubmitted)})
-        </div>
-        <pre className="font-mono">{JSON.stringify(watch(), null, 2)}</pre>
-      </div>
-      <div>
-        <div className="font-bold">Dirty Fields</div>
-        <pre className="font-mono">{JSON.stringify(dirtyFields, null, 2)}</pre>
-      </div>
-      <div>
-        <div className="font-bold">Touched Fields</div>
-        <pre className="font-mono">
-          {JSON.stringify(touchedFields, null, 2)}
-        </pre>
-      </div>
+      <FormProvider {...formMethods}>
+        <TestForm onSubmit={onSubmit} />
+      </FormProvider>
     </div>
   );
 };

@@ -8,10 +8,13 @@ export const UseEffectDemo = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchPlanets(page).then((data) => {
-      setLoading(false);
-      setData(data);
-    });
+    fetchPlanets(page).then(
+      (data) => {
+        setLoading(false);
+        setData(data);
+      },
+      (error) => console.log(error)
+    );
   }, [page]);
 
   return (

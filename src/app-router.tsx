@@ -10,6 +10,10 @@ import { SetDynamicRouteDemo } from './pages/routing/set-dynamic-route-demo';
 import { GetDynamicRouteParamDemo } from './pages/routing/get-dynamic-route-param-demo';
 import { MantineDemo } from './pages/styling/mantine-demo';
 import { RouteMatchesDemo } from './pages/routing/route-matches-demo';
+import {
+  MutationSuccessPage,
+  UseMutationDemo,
+} from './pages/data-fetching/use-mutation-demo';
 
 const router = createBrowserRouter([
   {
@@ -55,7 +59,7 @@ const router = createBrowserRouter([
       <DemoPageLayout
         title="Data Fetching"
         className="bg-amber-500"
-        links={['use-effect', 'react-query']}
+        links={['use-effect', 'use-query', 'use-mutation']}
       />
     ),
     children: [
@@ -64,8 +68,15 @@ const router = createBrowserRouter([
         element: <UseEffectDemo />,
       },
       {
-        path: 'react-query',
+        path: 'use-query',
         element: <ReactQueryDemo />,
+      },
+      {
+        path: 'use-mutation',
+        children: [
+          { index: true, element: <UseMutationDemo /> },
+          { path: 'success', element: <MutationSuccessPage /> },
+        ],
       },
     ],
   },

@@ -3,7 +3,7 @@ import { Link, To } from 'react-router-dom';
 
 export const Dashboard = () => {
   return (
-    <div className="text-white flex gap-10 ">
+    <div className="text-white flex flex-col md:flex-row gap-10">
       <DashboardLink to="routing/dynamic-route">Routing</DashboardLink>
       <DashboardLink to="data-fetching/use-effect">Data Fetching</DashboardLink>
       <DashboardLink to="forms">Forms</DashboardLink>
